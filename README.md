@@ -1,6 +1,8 @@
 ﻿# Welcome to Manabu! 
  A Quiz based app for learning Japanese.
+ 
  **Fun Fact:** "Manabu" or "学ぶ" means Learn!
+ 
  This app will only be teaching basic Japanese currently using Hiragana and Katakana, Kanji will be implemented later.
  
  ## Details
