@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Manabu.Models
 {
-    public class FlashCards
+    public class FlashCard
     {
         [Required]
         public int Id { get; set; }
@@ -15,6 +15,7 @@ namespace Manabu.Models
         [Required]
         public string Answer { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
