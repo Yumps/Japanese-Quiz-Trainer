@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Manabu.Models.ViewModels
 {
-    public class QuizQuestions
+    public class QuizQuestionsViewModel
     {
         public int Id { get; set; }
         public Quiz Quiz { get; set; }

@@ -7,48 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Manabu.Data;
 using Manabu.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Manabu.Controllers
 {
+    [Authorize]
     public class FlashCardsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public FlashCardsController(ApplicationDbContext context)
+        public FlashCardsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: FlashCards
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.FlashCards.Include(f => f.User);
+            var user = await GetUserASync();
+            var applicationDbContext = _context.FlashCards.Where(f => f.UserId == user.Id).Include(f => f.User);
             return View(await applicationDbContext.ToListAsync());
-        }
-
-        // GET: FlashCards/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var flashCard = await _context.FlashCards
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (flashCard == null)
-            {
-                return NotFound();
-            }
-
-            return View(flashCard);
         }
 
         // GET: FlashCards/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
 
@@ -57,15 +43,16 @@ namespace Manabu.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Question,Answer,UserId")] FlashCard flashCard)
+        public async Task<IActionResult> Create([Bind("Question,Answer")] FlashCard flashCard)
         {
             if (ModelState.IsValid)
             {
+                var user = await GetUserASync();
+                flashCard.UserId = user.Id;
                 _context.Add(flashCard);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", flashCard.UserId);
             return View(flashCard);
         }
 
@@ -155,6 +142,17 @@ namespace Manabu.Controllers
         private bool FlashCardExists(int id)
         {
             return _context.FlashCards.Any(e => e.Id == id);
+        }
+
+        private Task<ApplicationUser> GetUserASync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
+        }
+
+        private async Task<bool> WasCreatedByUser(FlashCard flashCard)
+        {
+            var user = await GetUserASync();
+            return flashCard.UserId == user.Id;
         }
     }
 }
