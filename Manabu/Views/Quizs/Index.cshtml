@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Manabu.Models.Quiz>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<body>
+@foreach (var item in Model) {
+    <div class="box-shadow">
+    <p class="display-4">
+        @Html.DisplayFor(modelItem => item.Name)
+    </p>
+                <a asp-action="TakeQuiz" asp-route-id="@item.Id">Take Quiz</a>
+    </div>
+}
+</body>

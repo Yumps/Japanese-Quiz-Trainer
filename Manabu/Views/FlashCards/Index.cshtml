@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Manabu.Models.FlashCard>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@foreach (var item in Model)
+{
+<div class="box-shadow">
+    <h1 class="display-4">@Html.DisplayNameFor(model => model.Question)</h1>
+    <h1 class="display-2">@Html.DisplayFor(modelItem => item.Question)</h1>
+    <h1>@Html.DisplayNameFor(model => model.Answer)</h1>
+    <h1>@Html.DisplayFor(modelItem => item.Answer)</h1>
+    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+</div>
+}
+
