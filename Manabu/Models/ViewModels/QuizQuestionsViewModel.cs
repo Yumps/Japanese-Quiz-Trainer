@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Manabu.Models
+namespace Manabu.Models.ViewModels
 {
-    public class Quiz
+    public class QuizQuestionsViewModel
     {
-        [Required]
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-
+        public Quiz Quiz { get; set; }
         public Question Question { get; set; }
     }
 }
