@@ -37,7 +37,6 @@ namespace Manabu.Controllers
             }
 
             var quiz = await _context.Quizzes
-                .Include(q => q.Question)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (quiz == null)

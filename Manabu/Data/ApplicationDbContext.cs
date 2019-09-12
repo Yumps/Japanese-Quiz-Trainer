@@ -18,6 +18,7 @@ namespace Manabu.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<AnswerKey> AnswerKeys { get; set; }
         public DbSet<FlashCard> FlashCards { get; set; }
+        public DbSet<QuizQuestions> QuizQuestions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -985,8 +986,39 @@ namespace Manabu.Data
                     UserId = user.Id
                 }
             );
-        }
 
-        public DbSet<Manabu.Models.ViewModels.QuizQuestionsViewModel> QuizQuestionsViewModel { get; set; }
+            modelBuilder.Entity<QuizQuestions>().HasData(
+                new QuizQuestions()
+                {
+                    Id = 1,
+                    QuizId = 1,
+                    QuestionId = 1
+                },
+                new QuizQuestions()
+                {
+                    Id = 2,
+                    QuizId = 1,
+                    QuestionId = 2
+                },
+                new QuizQuestions()
+                {
+                    Id = 3,
+                    QuizId = 1,
+                    QuestionId = 3
+                },
+                new QuizQuestions()
+                {
+                    Id = 4,
+                    QuizId = 1,
+                    QuestionId = 4
+                },
+                new QuizQuestions()
+                {
+                    Id = 5,
+                    QuizId = 1,
+                    QuestionId = 5
+                }
+            );
+        }
     }
 }
