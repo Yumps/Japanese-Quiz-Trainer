@@ -5,6 +5,7 @@ using Manabu.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Manabu.Models.ViewModels;
 
 namespace Manabu.Data
 {
@@ -985,5 +986,7 @@ namespace Manabu.Data
                 }
             );
         }
+
+        public DbSet<Manabu.Models.ViewModels.QuizQuestionsViewModel> QuizQuestionsViewModel { get; set; }
     }
 }

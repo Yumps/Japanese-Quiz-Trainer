@@ -28,8 +28,8 @@ namespace Manabu.Controllers
             return View(await _context.Quizzes.ToListAsync());
         }
 
-        // GET: Quizs/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Quizs/TakeQuiz/1
+        public async Task<IActionResult> TakeQuiz(int? id)
         {
             if (id == null)
             {
@@ -37,7 +37,9 @@ namespace Manabu.Controllers
             }
 
             var quiz = await _context.Quizzes
+                .Include(q => q.Question)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (quiz == null)
             {
                 return NotFound();
