@@ -45,6 +45,7 @@ namespace Manabu.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Question,Answer")] FlashCard flashCard)
         {
+            ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
                 var user = await GetUserASync();
@@ -69,7 +70,14 @@ namespace Manabu.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", flashCard.UserId);
+
+            var wasCreatedByUser = await WasCreatedByUser(flashCard);
+
+            if(!wasCreatedByUser)
+            {
+                return NotFound();
+            }
+
             return View(flashCard);
         }
 
@@ -121,6 +129,13 @@ namespace Manabu.Controllers
                 .Include(f => f.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (flashCard == null)
+            {
+                return NotFound();
+            }
+
+            var wasCreatedByLoggedInUser = await WasCreatedByUser(flashCard);
+
+            if(!wasCreatedByLoggedInUser)
             {
                 return NotFound();
             }
