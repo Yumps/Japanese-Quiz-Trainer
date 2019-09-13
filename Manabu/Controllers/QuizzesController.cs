@@ -13,11 +13,11 @@ using Manabu.Models.ViewModels;
 namespace Manabu.Controllers
 {
     [Authorize]
-    public class QuizsController : Controller
+    public class QuizzesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public QuizsController(ApplicationDbContext context)
+        public QuizzesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -45,27 +45,30 @@ namespace Manabu.Controllers
 
             var answerList = await _context.AnswerKeys.ToListAsync();
 
-            var answers = new List<int>();
 
             foreach(Question question in questions)
             {
+            var answersIndex = new List<int>();
+              var correctAnswerIndex = answerList.FindIndex(a=>a.Id == question.AnswerKeys.ToList()[0].Id);
+                answersIndex.Add(correctAnswerIndex);
 
-
-                while(answers.Count() < 4)
-                {
                 var random = new Random();
-                int index = random.Next(answerList.Count());
-                question.AnswerKeys.Add(answerList[index]);
 
+                while (answersIndex.Count() < 4)
+                {
+                    //generate random number in while loop, check if in answersIndex, if not add to answerIndex
+                    var index = random.Next(answerList.Count());
 
-                int index2 = random.Next(answerList.Count());
-                question.AnswerKeys.Add(answerList[index2]);
-
-
-                int index3 = random.Next(answerList.Count());
-                question.AnswerKeys.Add(answerList[index3]);
+                    if (!answersIndex.Contains(index))
+                    {
+                    answersIndex.Add(index);
+                    }
                 }
-            }
+                //add question's answer based on the random number given in while loop
+                question.AnswerKeys.Add(answerList[answersIndex[1]]);
+                question.AnswerKeys.Add(answerList[answersIndex[2]]);
+                question.AnswerKeys.Add(answerList[answersIndex[3]]);
+                }
 
             return View(questions);
         }

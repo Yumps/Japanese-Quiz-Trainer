@@ -13,7 +13,7 @@
             <p class="display-4">@Html.DisplayFor(modelItem => item.Name)</p>
             @foreach(var answer in item.AnswerKeys)
                 {
-                    <input type="radio" id="radio" name="@Html.DisplayFor(modelItem =>answer.Name)" value="@Html.DisplayFor(modelItem =>answer.Name)"/>
+                    <input type="radio" id="radio" name="@Html.DisplayNameFor(modelItem =>answer.Name)" value="@Html.DisplayFor(modelItem =>answer.Name)"/>
                     <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
                     <br />
                 }
