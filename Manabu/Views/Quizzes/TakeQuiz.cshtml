@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Manabu.Models.Question>
+
+@{
+    ViewData["Title"] = "TakeQuiz";
+}
+
+@*<h1>TakeQuiz</h1>*@
+
+@foreach (var item in Model) {
+    <div>
+        <form>
+            <h1>Question @Html.DisplayFor(modelItem => item.Id)</h1>
+            <p class="display-4">@Html.DisplayFor(modelItem => item.Name)</p>
+            @foreach(var answer in item.AnswerKeys)
+                {
+                    <input type="radio" id="radio" name="@Html.DisplayNameFor(modelItem =>answer.Name)" value="@Html.DisplayFor(modelItem =>answer.Name)"/>
+                    <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
+                    <br />
+                }
+        </form>
+    </div>
+}
