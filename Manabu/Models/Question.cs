@@ -12,5 +12,9 @@ namespace Manabu.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public ICollection<QuizQuestions> QuizQuestions { get; set; }
+
+        public ICollection<AnswerKey> AnswerKeys { get; set; }
     }
 }

@@ -1,24 +1,22 @@
-﻿@model Manabu.Models.Quiz
+﻿@model IEnumerable<Manabu.Models.Question>
 
 @{
     ViewData["Title"] = "TakeQuiz";
 }
 
-<h1>TakeQuiz</h1>
+@*<h1>TakeQuiz</h1>*@
 
-<div>
-    <h4>Quiz</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@foreach (var item in Model) {
+    <div>
+        <form>
+            <h1>Question @Html.DisplayFor(modelItem => item.Id)</h1>
+            <p class="display-4">@Html.DisplayFor(modelItem => item.Name)</p>
+            @foreach(var answer in item.AnswerKeys)
+                {
+                    <input type="radio" id="radio" name="@Html.DisplayFor(modelItem =>answer.Name)" value="@Html.DisplayFor(modelItem =>answer.Name)"/>
+                    <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
+                    <br />
+                }
+        </form>
+    </div>
+}
