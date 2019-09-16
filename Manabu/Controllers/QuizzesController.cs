@@ -67,7 +67,12 @@ namespace Manabu.Controllers
                         answersIndex.Add(index);
                     }
                 }
+
+                //answersIndex.OrderBy(item => random.Next());
+
                 //add question's answer based on the random number given in while loop
+
+                //question.AnswerKeys.Add(answerList[answersIndex[0]]);
                 question.AnswerKeys.Add(answerList[answersIndex[1]]);
                 question.AnswerKeys.Add(answerList[answersIndex[2]]);
                 question.AnswerKeys.Add(answerList[answersIndex[3]]);
@@ -77,17 +82,29 @@ namespace Manabu.Controllers
         }
 
         //POST User Answers
-        //public async Task<IActionResult> Create([Bind("AnswerKey, QuestionId, UserId")] Question question)
+        public async Task<IActionResult> SaveAnswers([Bind("Id,AnswerKeys,CorrectAnswer")] IEnumerable<Question> question)
+        {
+            foreach (Question questionResult in question)
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = await GetUserAsync();
+                    var userAnswer = new UserQuestionAnswer();
+                    userAnswer.QuestionId = questionResult.Id;
+                    userAnswer.AnswerId = questionResult.CorrectAnswer;
+                    userAnswer.UserId = user.Id;
+                    _context.Add(userAnswer);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET: Quiz/QuizResults
+        //public async Task<IActionResult> QuizResults(int? id)
         //{
 
-        //    if(ModelState.IsValid)
-        //    {
-        //        var user = await GetUserAsync();
-        //        question.UserId = user.Id;
-        //        _context.Add(question);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(QuizResults));
-        //    }
         //}
 
         public Task<ApplicationUser> GetUserAsync()
