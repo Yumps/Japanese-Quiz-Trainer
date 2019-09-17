@@ -9,6 +9,7 @@ using Manabu.Data;
 using Manabu.Models;
 using Microsoft.AspNetCore.Authorization;
 using Manabu.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace Manabu.Controllers
 {
@@ -16,10 +17,12 @@ namespace Manabu.Controllers
     public class QuizzesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public QuizzesController(ApplicationDbContext context)
+        public QuizzesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Quiz
@@ -46,10 +49,10 @@ namespace Manabu.Controllers
             var answerList = await _context.AnswerKeys.ToListAsync();
 
 
-            foreach(Question question in questions)
+            foreach (Question question in questions)
             {
-            var answersIndex = new List<int>();
-              var correctAnswerIndex = answerList.FindIndex(a=>a.Id == question.AnswerKeys.ToList()[0].Id);
+                var answersIndex = new List<int>();
+                var correctAnswerIndex = answerList.FindIndex(a => a.Id == question.AnswerKeys.ToList()[0].Id);
                 answersIndex.Add(correctAnswerIndex);
 
                 var random = new Random();
@@ -61,16 +64,52 @@ namespace Manabu.Controllers
 
                     if (!answersIndex.Contains(index))
                     {
-                    answersIndex.Add(index);
+                        answersIndex.Add(index);
                     }
                 }
+
+                //answersIndex.OrderBy(item => random.Next());
+
                 //add question's answer based on the random number given in while loop
+
+                //question.AnswerKeys.Add(answerList[answersIndex[0]]);
                 question.AnswerKeys.Add(answerList[answersIndex[1]]);
                 question.AnswerKeys.Add(answerList[answersIndex[2]]);
                 question.AnswerKeys.Add(answerList[answersIndex[3]]);
-                }
+            }
 
             return View(questions);
+        }
+
+        //POST User Answers
+        public async Task<IActionResult> SaveAnswers([Bind("Id,AnswerKeys,CorrectAnswer")] IEnumerable<Question> question)
+        {
+            foreach (Question questionResult in question)
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = await GetUserAsync();
+                    var userAnswer = new UserQuestionAnswer();
+                    userAnswer.QuestionId = questionResult.Id;
+                    userAnswer.AnswerId = questionResult.CorrectAnswer;
+                    userAnswer.UserId = user.Id;
+                    _context.Add(userAnswer);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET: Quiz/QuizResults
+        //public async Task<IActionResult> QuizResults(int? id)
+        //{
+
+        //}
+
+        public Task<ApplicationUser> GetUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
         }
     }
 }
