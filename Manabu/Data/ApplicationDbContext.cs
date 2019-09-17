@@ -19,6 +19,7 @@ namespace Manabu.Data
         public DbSet<AnswerKey> AnswerKeys { get; set; }
         public DbSet<FlashCard> FlashCards { get; set; }
         public DbSet<QuizQuestions> QuizQuestions { get; set; }
+        public DbSet<UserQuestionAnswer> UserQuestionAnswers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
