@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Manabu.Migrations
 {
-    public partial class newmodel : Migration
+    public partial class dbUserQuizQuestion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,7 @@ namespace Manabu.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AnswerId = table.Column<int>(nullable: false),
-                    AnswerKeyId = table.Column<int>(nullable: true),
+                    AnswerKeyId = table.Column<int>(nullable: false),
                     QuestionId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
@@ -32,7 +31,7 @@ namespace Manabu.Migrations
                         column: x => x.QuestionId,
                         principalTable: "Questions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UserQuestionAnswers_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -46,7 +45,7 @@ namespace Manabu.Migrations
                 keyColumn: "Id",
                 keyValue: "00000000-ffff-ffff-ffff-ffffffffffff",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash" },
-                values: new object[] { "54045ffc-d481-4aac-97bb-4e2c5e562c98", "AQAAAAEAACcQAAAAENNu8mW76fqQMtGr+xOp6iJjWl9FNT/nwhoIttvq0Z199maZGZDtatOsbcUbCWJ/1A==" });
+                values: new object[] { "e8998ceb-3cda-46b5-8b72-c135744d63e3", "AQAAAAEAACcQAAAAENwnNbPv/AMg26WjwWZwQNIu26bHwIhgta+dTfIrZ0C47eE8UIgm0g7fYZHTaTgjKA==" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserQuestionAnswers_AnswerKeyId",
@@ -74,7 +73,7 @@ namespace Manabu.Migrations
                 keyColumn: "Id",
                 keyValue: "00000000-ffff-ffff-ffff-ffffffffffff",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash" },
-                values: new object[] { "b032ffe9-9271-49ff-a13e-7328c6c9179d", "AQAAAAEAACcQAAAAEAoN0pocvytsq+AnP5RIjVq0+v0vPisuXvb2sRabeUH09h+CgM2t7PBzr0esjDtp2w==" });
+                values: new object[] { "3d8f6556-7a1b-4877-b925-a173d71e3384", "AQAAAAEAACcQAAAAEFr25by6rtt/ukIVCiDnzmWWqZZP8QfJN7zdMtfVvn252bpEglJ0xgcLjd51WHxIAA==" });
         }
     }
 }

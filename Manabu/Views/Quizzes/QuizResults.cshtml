@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Manabu.Models.QuizQuestions>
+
+<div>
+    <h1>Results</h1>
+    @foreach (var answer in Model)
+    {
+        <p>
+            @Html.DisplayFor(modelItem => answer.Question.CorrectAnswer)
+        </p>
+    }
+</div>

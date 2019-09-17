@@ -8,7 +8,7 @@ namespace Manabu.Models
     public class UserQuestionAnswer
     {
         public int Id { get; set; }
-        public int AnswerId { get; set; }
+        public int AnswerKeyId { get; set; }
         public AnswerKey AnswerKey { get; set; }
         public int QuestionId { get; set; }
         public Question Question { get; set; }

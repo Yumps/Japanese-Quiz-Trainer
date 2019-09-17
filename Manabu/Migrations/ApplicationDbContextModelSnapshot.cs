@@ -30,17 +30,9 @@ namespace Manabu.Migrations
 
                     b.Property<int>("QuestionId");
 
-                    b.Property<int?>("QuizId");
-
-                    b.Property<int?>("QuizQuestionsViewModelId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("QuestionId");
-
-                    b.HasIndex("QuizId");
-
-                    b.HasIndex("QuizQuestionsViewModelId");
 
                     b.ToTable("AnswerKeys");
 
@@ -953,9 +945,7 @@ namespace Manabu.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AnswerId");
-
-                    b.Property<int?>("AnswerKeyId");
+                    b.Property<int>("AnswerKeyId");
 
                     b.Property<int>("QuestionId");
 
@@ -970,21 +960,6 @@ namespace Manabu.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserQuestionAnswers");
-                });
-
-            modelBuilder.Entity("Manabu.Models.ViewModels.QuizQuestionsViewModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("QuestionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("QuizQuestionsViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -1174,13 +1149,13 @@ namespace Manabu.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54045ffc-d481-4aac-97bb-4e2c5e562c98",
+                            ConcurrencyStamp = "e8998ceb-3cda-46b5-8b72-c135744d63e3",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENNu8mW76fqQMtGr+xOp6iJjWl9FNT/nwhoIttvq0Z199maZGZDtatOsbcUbCWJ/1A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENwnNbPv/AMg26WjwWZwQNIu26bHwIhgta+dTfIrZ0C47eE8UIgm0g7fYZHTaTgjKA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -1196,14 +1171,6 @@ namespace Manabu.Migrations
                         .WithMany("AnswerKeys")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Manabu.Models.Quiz")
-                        .WithMany("AnswerKeys")
-                        .HasForeignKey("QuizId");
-
-                    b.HasOne("Manabu.Models.ViewModels.QuizQuestionsViewModel")
-                        .WithMany("AnswerKey")
-                        .HasForeignKey("QuizQuestionsViewModelId");
                 });
 
             modelBuilder.Entity("Manabu.Models.FlashCard", b =>
@@ -1231,23 +1198,17 @@ namespace Manabu.Migrations
                 {
                     b.HasOne("Manabu.Models.AnswerKey", "AnswerKey")
                         .WithMany()
-                        .HasForeignKey("AnswerKeyId");
+                        .HasForeignKey("AnswerKeyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Manabu.Models.Question", "Question")
-                        .WithMany()
+                        .WithMany("UserQuestionAnswers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Manabu.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Manabu.Models.ViewModels.QuizQuestionsViewModel", b =>
-                {
-                    b.HasOne("Manabu.Models.Question", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -14,6 +14,5 @@ namespace Manabu.Models
         public string Name { get; set; }
 
         public virtual ICollection<QuizQuestions> QuizQuestions { get; set; }
-        public virtual ICollection<AnswerKey> AnswerKeys { get; set; }
     }
 }
