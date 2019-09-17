@@ -82,30 +82,58 @@ namespace Manabu.Controllers
         }
 
         //POST User Answers
-        public async Task<IActionResult> SaveAnswers([Bind("Id,AnswerKeys,CorrectAnswer")] IEnumerable<Question> question)
+        public async Task<IActionResult> SaveAnswers([Bind("Id,CorrectAnswer")] IEnumerable<Question> question)
         {
             foreach (Question questionResult in question)
             {
-                if (ModelState.IsValid)
+                //var name = question.ToList()[0].Name;
+
+                if (question.ToList()[0].CorrectAnswer != null)
                 {
                     var user = await GetUserAsync();
-                    var userAnswer = new UserQuestionAnswer();
-                    userAnswer.QuestionId = questionResult.Id;
-                    userAnswer.AnswerId = questionResult.CorrectAnswer;
-                    userAnswer.UserId = user.Id;
+                    var userAnswer = new UserQuestionAnswer
+                    {
+                        QuestionId = questionResult.Id,
+                        AnswerKeyId = questionResult.CorrectAnswer,
+                        UserId = user.Id
+                    };
                     _context.Add(userAnswer);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(QuizResults));
                 }
             }
             return RedirectToAction(nameof(Index));
         }
 
         //GET: Quiz/QuizResults
-        //public async Task<IActionResult> QuizResults(int? id)
-        //{
+        public async Task<IActionResult> QuizResults(int? id)
+        {
+            var quizResults = await _context.QuizQuestions
+                .Include(q => q.Question)
+                .ThenInclude(q => q.UserQuestionAnswers)
+                .Where(q => q.QuizId == id).ToListAsync();
 
-        //}
+            var quizAnswers = await _context.QuizQuestions
+                .Include(q => q.Question)
+                .ThenInclude(q => q.AnswerKeys)
+                .Where(q => q.QuizId == id).ToListAsync();
+
+            foreach (QuizQuestions answers in quizResults)
+            {
+                var correctAnswers = 0;
+                var userAnswers = answers.Question.UserQuestionAnswers.ToList()[0].AnswerKeyId;
+                var quizCorrectAnswers = quizAnswers.ToList()[0].Question.AnswerKeys.ToList()[0].Id;
+
+                if (userAnswers == quizCorrectAnswers)
+                    {
+                    correctAnswers++;
+                }
+
+                answers.Question.CorrectAnswer = correctAnswers;
+            }
+
+            return View(quizResults);
+        }
 
         public Task<ApplicationUser> GetUserAsync()
         {

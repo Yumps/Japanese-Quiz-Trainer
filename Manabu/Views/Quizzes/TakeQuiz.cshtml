@@ -9,22 +9,6 @@
 
     <div>
         <form asp-action="SaveAnswers">
-            @*@foreach (var item in Model) {
-            <div>
-            <h1>Question @Html.DisplayFor(modelItem => item.Id)</h1>
-            <p id="question" class="display-4">@Html.DisplayFor(modelItem => item.Name)</p>
-            <button onclick="responsiveVoice.speak('', 'Japanese Male', { Volume: 0.5 })" type="button" value="Play">Play</button>
-            </div>
-            <input type="hidden" asp-for="@item.Id"/>
-
-            @foreach (var answer in item.AnswerKeys)
-            {
-            <div>
-                <input type="radio" id="radio" name="@Html.DisplayNameFor(modelItem =>answer.Name)" value="@Html.DisplayFor(modelItem =>answer.Name)" />
-                <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
-            </div>
-            }
-        }*@
 
             @for (var i = 0; i < Model.ToList().Count(); i++)
             {

@@ -1021,7 +1021,5 @@ namespace Manabu.Data
                 }
             );
         }
-
-        public DbSet<Manabu.Models.ViewModels.QuizQuestionsViewModel> QuizQuestionsViewModel { get; set; }
     }
 }
