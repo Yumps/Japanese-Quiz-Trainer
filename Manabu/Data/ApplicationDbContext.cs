@@ -48,6 +48,36 @@ namespace Manabu.Data
                 {
                     Id = 1,
                     Name = "Quiz 1"
+                },
+                new Quiz()
+                {
+                    Id = 2,
+                    Name = "Quiz 2"
+                },
+                new Quiz()
+                {
+                    Id = 3,
+                    Name = "Quiz 3"
+                },
+                new Quiz()
+                {
+                    Id = 4,
+                    Name = "Quiz 4"
+                },
+                new Quiz()
+                {
+                    Id = 5,
+                    Name = "Quiz 5"
+                },
+                new Quiz()
+                {
+                    Id = 6,
+                    Name = "Quiz 6"
+                },
+                new Quiz()
+                {
+                    Id = 7,
+                    Name = "Quiz 7"
                 }
             );
 
@@ -1018,6 +1048,402 @@ namespace Manabu.Data
                     Id = 5,
                     QuizId = 1,
                     QuestionId = 5
+                },
+                new QuizQuestions()
+                {
+                    Id = 6,
+                    QuizId = 1,
+                    QuestionId = 6
+                },
+                new QuizQuestions()
+                {
+                    Id = 7,
+                    QuizId = 1,
+                    QuestionId = 7
+                },
+                new QuizQuestions()
+                {
+                    Id = 8,
+                    QuizId = 1,
+                    QuestionId = 8
+                },
+                new QuizQuestions()
+                {
+                    Id = 9,
+                    QuizId = 1,
+                    QuestionId = 9
+                },
+                new QuizQuestions()
+                {
+                    Id = 10,
+                    QuizId = 1,
+                    QuestionId = 10
+                },
+                new QuizQuestions()
+                {
+                    Id = 11,
+                    QuizId = 2,
+                    QuestionId = 13 
+                },
+                new QuizQuestions()
+                {
+                    Id = 12,
+                    QuizId = 2,
+                    QuestionId = 14
+                },
+                new QuizQuestions()
+                {
+                    Id = 13,
+                    QuizId = 2,
+                    QuestionId = 16
+                },
+                new QuizQuestions()
+                {
+                    Id = 14,
+                    QuizId = 2,
+                    QuestionId = 20
+                },
+                new QuizQuestions()
+                {
+                    Id = 15,
+                    QuizId = 2,
+                    QuestionId = 34
+                },
+                new QuizQuestions()
+                {
+                    Id = 16,
+                    QuizId = 2,
+                    QuestionId = 35
+                },
+                new QuizQuestions()
+                {
+                    Id = 17,
+                    QuizId = 2,
+                    QuestionId = 55
+                },
+                new QuizQuestions()
+                {
+                    Id = 18,
+                    QuizId = 2,
+                    QuestionId = 56
+                },
+                new QuizQuestions()
+                {
+                    Id = 19,
+                    QuizId = 2,
+                    QuestionId = 63
+                },
+                new QuizQuestions()
+                {
+                    Id = 20,
+                    QuizId = 2,
+                    QuestionId = 68
+                },
+                new QuizQuestions()
+                {
+                    Id = 21,
+                    QuizId = 3,
+                    QuestionId = 11
+                },
+                new QuizQuestions()
+                {
+                    Id = 22,
+                    QuizId = 3,
+                    QuestionId = 29
+                },
+                new QuizQuestions()
+                {
+                    Id = 23,
+                    QuizId = 3,
+                    QuestionId = 31
+                },
+                new QuizQuestions()
+                {
+                    Id = 24,
+                    QuizId = 3,
+                    QuestionId = 36
+                },
+                new QuizQuestions()
+                {
+                    Id = 25,
+                    QuizId = 3,
+                    QuestionId = 37
+                },
+                new QuizQuestions()
+                {
+                    Id = 26,
+                    QuizId = 3,
+                    QuestionId = 44
+                },
+                new QuizQuestions()
+                {
+                    Id = 27,
+                    QuizId = 3,
+                    QuestionId = 22
+                },
+                new QuizQuestions()
+                {
+                    Id = 28,
+                    QuizId = 3,
+                    QuestionId = 28
+                },
+                new QuizQuestions()
+                {
+                    Id = 29,
+                    QuizId = 3,
+                    QuestionId = 30
+                },
+                new QuizQuestions()
+                {
+                    Id = 30,
+                    QuizId = 3,
+                    QuestionId = 33
+                },
+                new QuizQuestions()
+                {
+                    Id = 31,
+                    QuizId = 4,
+                    QuestionId = 39
+                },
+                new QuizQuestions()
+                {
+                    Id = 32,
+                    QuizId = 4,
+                    QuestionId = 48
+                },
+                new QuizQuestions()
+                {
+                    Id = 33,
+                    QuizId = 4,
+                    QuestionId = 71
+                },
+                new QuizQuestions()
+                {
+                    Id = 34,
+                    QuizId = 4,
+                    QuestionId = 26
+                },
+                new QuizQuestions()
+                {
+                    Id = 35,
+                    QuizId = 4,
+                    QuestionId = 52
+                },
+                new QuizQuestions()
+                {
+                    Id = 36,
+                    QuizId = 4,
+                    QuestionId = 58
+                },
+                new QuizQuestions()
+                {
+                    Id = 37,
+                    QuizId = 4,
+                    QuestionId = 65
+                },
+                new QuizQuestions()
+                {
+                    Id = 38,
+                    QuizId = 4,
+                    QuestionId = 70
+                },
+                new QuizQuestions()
+                {
+                    Id = 39,
+                    QuizId = 4,
+                    QuestionId = 17
+                },
+                new QuizQuestions()
+                {
+                    Id = 40,
+                    QuizId = 4,
+                    QuestionId = 19
+                },
+                new QuizQuestions()
+                {
+                    Id = 41,
+                    QuizId = 5,
+                    QuestionId = 38
+                },
+                new QuizQuestions()
+                {
+                    Id = 42,
+                    QuizId = 5,
+                    QuestionId = 51
+                },
+                new QuizQuestions()
+                {
+                    Id = 43,
+                    QuizId = 5,
+                    QuestionId = 54
+                },
+                new QuizQuestions()
+                {
+                    Id = 44,
+                    QuizId = 5,
+                    QuestionId = 67
+                },
+                new QuizQuestions()
+                {
+                    Id = 45,
+                    QuizId = 5,
+                    QuestionId = 69
+                },
+                new QuizQuestions()
+                {
+                    Id = 46,
+                    QuizId = 5,
+                    QuestionId = 50
+                },
+                new QuizQuestions()
+                {
+                    Id = 47,
+                    QuizId = 5,
+                    QuestionId = 61
+                },
+                new QuizQuestions()
+                {
+                    Id = 48,
+                    QuizId = 5,
+                    QuestionId = 64
+                },
+                new QuizQuestions()
+                {
+                    Id = 49,
+                    QuizId = 5,
+                    QuestionId = 12
+                },
+                new QuizQuestions()
+                {
+                    Id = 50,
+                    QuizId = 5,
+                    QuestionId = 43
+                },
+                new QuizQuestions()
+                {
+                    Id = 51,
+                    QuizId = 6,
+                    QuestionId = 57
+                },
+                new QuizQuestions()
+                {
+                    Id = 52,
+                    QuizId = 6,
+                    QuestionId = 59
+                },
+                new QuizQuestions()
+                {
+                    Id = 53,
+                    QuizId = 6,
+                    QuestionId = 32
+                },
+                new QuizQuestions()
+                {
+                    Id = 54,
+                    QuizId = 6,
+                    QuestionId = 21
+                },
+                new QuizQuestions()
+                {
+                    Id = 55,
+                    QuizId = 6,
+                    QuestionId = 60
+                },
+                new QuizQuestions()
+                {
+                    Id = 56,
+                    QuizId = 6,
+                    QuestionId = 40
+                },
+                new QuizQuestions()
+                {
+                    Id = 57,
+                    QuizId = 6,
+                    QuestionId = 25
+                },
+                new QuizQuestions()
+                {
+                    Id = 58,
+                    QuizId = 6,
+                    QuestionId = 23
+                },
+                new QuizQuestions()
+                {
+                    Id = 59,
+                    QuizId = 6,
+                    QuestionId = 47
+                },
+                new QuizQuestions()
+                {
+                    Id = 60,
+                    QuizId = 6,
+                    QuestionId = 53
+                },
+                new QuizQuestions()
+                {
+                    Id = 61,
+                    QuizId = 7,
+                    QuestionId = 24
+                },
+                new QuizQuestions()
+                {
+                    Id = 62,
+                    QuizId = 7,
+                    QuestionId = 15
+                },
+                new QuizQuestions()
+                {
+                    Id = 63,
+                    QuizId = 7,
+                    QuestionId = 41
+                },
+                new QuizQuestions()
+                {
+                    Id = 64,
+                    QuizId = 7,
+                    QuestionId = 66
+                },
+                new QuizQuestions()
+                {
+                    Id = 65,
+                    QuizId = 7,
+                    QuestionId = 62
+                },
+                new QuizQuestions()
+                {
+                    Id = 66,
+                    QuizId = 7,
+                    QuestionId = 46
+                },
+                new QuizQuestions()
+                {
+                    Id = 67,
+                    QuizId = 7,
+                    QuestionId = 42
+                },
+                new QuizQuestions()
+                {
+                    Id = 68,
+                    QuizId = 7,
+                    QuestionId = 45
+                },
+                new QuizQuestions()
+                {
+                    Id = 69,
+                    QuizId = 7,
+                    QuestionId = 18
+                },
+                new QuizQuestions()
+                {
+                    Id = 70,
+                    QuizId = 7,
+                    QuestionId = 49
+                },
+                new QuizQuestions()
+                {
+                    Id = 71,
+                    QuizId = 7,
+                    QuestionId = 27
                 }
             );
         }
