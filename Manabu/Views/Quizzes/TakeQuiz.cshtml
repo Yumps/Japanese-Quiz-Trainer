@@ -15,7 +15,11 @@
                 <div>
                     <h1>Question @Html.DisplayFor(modelItem => modelItem.ToList()[i].Id)</h1>
                     <p id="question" class="display-4">@Html.DisplayFor(modelItem => modelItem.ToList()[i].Name)</p>
-                    <button onclick="responsiveVoice.speak('', 'Japanese Male', { Volume: 0.5 })" type="button" value="Play">Play</button>
+
+                    <button onclick="responsiveVoice.speak('@Html.ValueFor(modelItem => modelItem.ToList()[i].Name)', 'Japanese Male', { Volume: 0.5 }, { Rate: 0.25 })" type="button" value="Play">
+                    <i class="fa fa-microphone"></i>
+                    </button>
+
                     @Html.TextBoxFor(modelItem => modelItem.ToList()[i].Id, new { style = "display: none;" })
                 </div>
 
@@ -32,8 +36,10 @@
 
             }
 
+            <input name="quizId" type="hidden" value="@Model.ToList()[0].QuizQuestions.ToList()[0].QuizId"/>
+
             <div class="form-group">
-                <button type="submit">Submit</button>
+                <input type="submit" value="Submit"/>
             </div>
         </form>
     </div>

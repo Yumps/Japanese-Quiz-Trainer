@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Manabu.Models.QuizQuestions>
+﻿@model Manabu.Models.Quiz
 
 <div>
     <h1>Results</h1>
-    @foreach (var answer in Model)
-    {
-        <p>
-            @Html.DisplayFor(modelItem => answer.Question.CorrectAnswer)
-        </p>
-    }
+    <p>
+        You got @Html.DisplayFor(modelItem => Model.CorrectAnswers) of @Html.DisplayFor(modelItem => Model.QuizQuestions.Count) questions correct!
+    </p>
+
+    <h2>Correct Answers</h2>
+    <h3>Wrong Answers</h3>
 </div>
