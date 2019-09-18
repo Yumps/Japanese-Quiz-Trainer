@@ -82,13 +82,11 @@ namespace Manabu.Controllers
         }
 
         //POST User Answers
-        public async Task<IActionResult> SaveAnswers([Bind("Id,CorrectAnswer")] IEnumerable<Question> question)
+        public async Task<IActionResult> SaveAnswers([Bind("Id,CorrectAnswer")] IEnumerable<Question> question, int quizId)
         {
             foreach (Question questionResult in question)
             {
-                //var name = question.ToList()[0].Name;
-
-                if (question.ToList()[0].CorrectAnswer != null)
+                if (questionResult.CorrectAnswer != 0 && questionResult.Id != 0)
                 {
                     var user = await GetUserAsync();
                     var userAnswer = new UserQuestionAnswer
@@ -99,15 +97,17 @@ namespace Manabu.Controllers
                     };
                     _context.Add(userAnswer);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(QuizResults));
                 }
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(QuizResults), new { id = quizId});
+            //return RedirectToAction(nameof(Index));
         }
 
         //GET: Quiz/QuizResults
         public async Task<IActionResult> QuizResults(int? id)
         {
+            var user = await GetUserAsync();
+
             var quizResults = await _context.QuizQuestions
                 .Include(q => q.Question)
                 .ThenInclude(q => q.UserQuestionAnswers)
@@ -118,21 +118,30 @@ namespace Manabu.Controllers
                 .ThenInclude(q => q.AnswerKeys)
                 .Where(q => q.QuizId == id).ToListAsync();
 
-            foreach (QuizQuestions answers in quizResults)
+            var quiz = _context.Quizzes
+                .Where(q => q.Id == id).FirstOrDefault();
+
+
+            var uqaSelect = quizResults
+            .Select(q => q.Question.UserQuestionAnswers.Where(u => u.UserId == user.Id).OrderByDescending(uqa => uqa.Id).First());
+
+            var answerList = quizAnswers.Select(q => q.Question.AnswerKeys.ToList()[0]);
+
+            var questionAnswerMatch = new List<AnswerKey>();
+
+            foreach (UserQuestionAnswer uqa in uqaSelect)
             {
-                var correctAnswers = 0;
-                var userAnswers = answers.Question.UserQuestionAnswers.ToList()[0].AnswerKeyId;
-                var quizCorrectAnswers = quizAnswers.ToList()[0].Question.AnswerKeys.ToList()[0].Id;
+                var correctAnswer = answerList.Where(q => q.QuestionId == uqa.QuestionId && q.Id == uqa.AnswerKeyId).ToList();
 
-                if (userAnswers == quizCorrectAnswers)
-                    {
-                    correctAnswers++;
+                if(correctAnswer.Count() > 0)
+                {
+                    questionAnswerMatch.Add(correctAnswer[0]);
                 }
-
-                answers.Question.CorrectAnswer = correctAnswers;
             }
+            var correctAnswerCount = questionAnswerMatch.Count();
+            quiz.CorrectAnswers = correctAnswerCount;
 
-            return View(quizResults);
+            return View(quiz);
         }
 
         public Task<ApplicationUser> GetUserAsync()

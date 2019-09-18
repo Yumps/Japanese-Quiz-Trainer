@@ -5,5 +5,12 @@
     <div class="text-center">
         <h1 class="display-3">学ぶためにようこそ</h1>
         <h1 class="display-4">Welcome to "Manabu"</h1>
-        <p>Sign Up or Login to get started.</p>
+        @if(!User.Identity.IsAuthenticated)
+        {
+            <p>
+        <a class="text-dark" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
+        or 
+        <a class="text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a> to get started.
+            </p>
+        }
     </div>
