@@ -4,12 +4,16 @@
     ViewData["Title"] = "Index";
 }
 <body>
+    <div class="d-flex flex-wrap justify-content-around">
 @foreach (var item in Model) {
-    <div class="box-shadow">
+    <div class="card mt-4">
+        <div class="card-body">
     <p class="display-4">
         @Html.DisplayFor(modelItem => item.Name)
     </p>
                 <a asp-action="TakeQuiz" asp-route-id="@item.Id">Take Quiz</a>
+        </div>
     </div>
 }
+    </div>
 </body>

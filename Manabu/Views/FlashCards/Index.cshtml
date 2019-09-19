@@ -4,21 +4,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-@foreach (var item in Model)
-{
-<div class="box-shadow">
-    <h1 class="display-4">@Html.DisplayNameFor(model => model.Question)</h1>
-    <h1 class="display-2">@Html.DisplayFor(modelItem => item.Question)</h1>
-    <h1>@Html.DisplayNameFor(model => model.Answer)</h1>
-    <h1>@Html.DisplayFor(modelItem => item.Answer)</h1>
-    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-</div>
-}
-
+<body>
+    <h1>Index</h1>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div class="d-flex flex-wrap justify-content-around">
+        @foreach (var item in Model)
+        {
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h1 class="display-4"><strong>@Html.DisplayNameFor(model => model.Question)</strong></h1>
+                        <p class="display-4">@Html.DisplayFor(modelItem => item.Question)</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h1 class="display-4"><strong>@Html.DisplayNameFor(model => model.Answer)</strong></h1>
+                        <p class="display-4">@Html.DisplayFor(modelItem => item.Answer)</p>
+                        <a class="text-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | <a class="text-light" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>

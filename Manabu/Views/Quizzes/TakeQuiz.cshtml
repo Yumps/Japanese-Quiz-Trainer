@@ -1,39 +1,44 @@
 ﻿@model IEnumerable<Manabu.Models.Question>
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=7KedZcdy"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=7KedZcdy"></script>
 
 @{
     ViewData["Title"] = "TakeQuiz";
 }
 
 @*<h1>TakeQuiz</h1>*@
-    <div>
-        <form asp-action="SaveAnswers">
-
+<div>
+    <form asp-action="SaveAnswers">
+        <div class="d-flex flex-wrap justify-content-around">
             @for (var i = 0; i < Model.ToList().Count(); i++)
             {
-                <div>
-                    <h1>Question @{var j = i + 1;} @j</h1>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h1>Question @{var j = i + 1;} @j</h1>
                         <div>
-                        <p id="question" class="display-4">@Html.DisplayFor(modelItem => modelItem.ToList()[i].Name) <i class="fa fa-microphone" onclick="responsiveVoice.speak('@Html.ValueFor(modelItem => modelItem.ToList()[i].Name)', 'Japanese Male', { Volume: 0.5 }, { Rate: 0.25 })" type="button" value="Play"></i></p>
-                        </div>
+                            <p class="display-4 question-padding">
+                                @Html.DisplayFor(modelItem => modelItem.ToList()[i].Name)
+                            <i class="fa fa-microphone" onclick="responsiveVoice.speak('@Html.ValueFor(modelItem => modelItem.ToList()[i].Name)', 'Japanese Male', { Volume: 0.5 }, { Rate: 0.25 })" type="button" value="Play"></i>
+                        </p>
+                    </div>
+
                     @Html.TextBoxFor(modelItem => modelItem.ToList()[i].Id, new { style = "display: none;" })
+
+                    @foreach (var answer in Model.ToList()[i].AnswerKeys)
+                    {
+                        <div >
+                            @Html.RadioButtonFor(modelItem => modelItem.ToList()[i].CorrectAnswer, answer.Id)
+                            <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
+                        </div>
+                    }
                 </div>
-
-                @foreach (var answer in Model.ToList()[i].AnswerKeys)
-                {
-        <div>
-            @Html.RadioButtonFor(modelItem => modelItem.ToList()[i].CorrectAnswer, answer.Id)
-            <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
-        </div>
-                }
-
-            }
-
-            <input name="quizId" type="hidden" value="@Model.ToList()[0].QuizQuestions.ToList()[0].QuizId"/>
-
-            <div class="form-group">
-                <input type="submit" value="Submit"/>
             </div>
-        </form>
-    </div>
+        }
+        </div>
+        <input name="quizId" type="hidden" value="@Model.ToList()[0].QuizQuestions.ToList()[0].QuizId" />
+
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-success" type="submit" value="Submit">Submit</button>
+        </div>
+    </form>
+</div>
 
