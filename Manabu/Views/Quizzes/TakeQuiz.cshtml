@@ -25,7 +25,7 @@
                             @foreach (var answer in Model.ToList()[i].AnswerKeys)
                             {
                                 <div>
-                                    @Html.RadioButtonFor(modelItem => modelItem.ToList()[i].CorrectAnswer, answer.Id)
+                                    @Html.RadioButtonFor(modelItem => modelItem.ToList()[i].CorrectAnswer, answer.Id, new { required = true })
                                     <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
                                 </div>
                             }

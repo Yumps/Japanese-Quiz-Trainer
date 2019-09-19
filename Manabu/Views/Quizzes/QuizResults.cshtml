@@ -1,11 +1,12 @@
 ﻿@model Manabu.Models.Quiz
 
-<div>
-    <h1>Results</h1>
-    <p>
-        You got @Html.DisplayFor(modelItem => Model.CorrectAnswers) of @Html.DisplayFor(modelItem => Model.QuizQuestions.Count) questions correct!
-    </p>
-
-    <h2>Correct Answers</h2>
-    <h3>Wrong Answers</h3>
-</div>
+<body class="home-image">
+    <div class="flex justify-content-center">
+        <h1 class="display-2 text-shadow">Results</h1>
+        <p class="display-4 text-shadow">
+            You got @Html.DisplayFor(modelItem => Model.CorrectAnswers) of @Html.DisplayFor(modelItem => Model.QuizQuestions.Count) questions correct!
+        </p>
+        @*<h2>Correct Answers</h2>
+            <h3>Wrong Answers</h3>*@
+    </div>
+</body>

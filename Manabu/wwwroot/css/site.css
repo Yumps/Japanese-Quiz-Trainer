@@ -68,8 +68,8 @@ body {
 }
 
 .footer-color {
-    background-color: #194C4A;
-    opacity:0.9;
+    background-color: black;
+    opacity:0.7;
 }
 
 .home-text-shadow {
@@ -81,8 +81,8 @@ body {
 }
 
 .nav-bg-color {
-    background-color: #194C4A;
-    opacity: 0.9;
+    background-color: black;
+    opacity: 0.7;
 }
 
 .flip-card {
@@ -115,7 +115,7 @@ body {
 }
 
 .flip-card-front {
-    background-color: #e5e5e5;
+    background-color: white;
     color: black;
 }
 
@@ -128,7 +128,7 @@ body {
 .question-padding {
     padding-left: 55px;
 }
-.text-shadow {
-    text-shadow: 2px 2px 3px #84A389;
-}
 
+.text-shadow {
+    text-shadow: 1px 1px 3px white;
+}

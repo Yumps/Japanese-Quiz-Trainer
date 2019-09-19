@@ -96,7 +96,6 @@ namespace Manabu.Controllers
                 }
             }
             return RedirectToAction(nameof(QuizResults), new { id = quizId});
-            //return RedirectToAction(nameof(Index));
         }
 
         //GET: Quiz/QuizResults
