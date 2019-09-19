@@ -68,11 +68,7 @@ namespace Manabu.Controllers
                     }
                 }
 
-                //answersIndex.OrderBy(item => random.Next());
-
                 //add question's answer based on the random number given in while loop
-
-                //question.AnswerKeys.Add(answerList[answersIndex[0]]);
                 question.AnswerKeys.Add(answerList[answersIndex[1]]);
                 question.AnswerKeys.Add(answerList[answersIndex[2]]);
                 question.AnswerKeys.Add(answerList[answersIndex[3]]);
@@ -100,7 +96,6 @@ namespace Manabu.Controllers
                 }
             }
             return RedirectToAction(nameof(QuizResults), new { id = quizId});
-            //return RedirectToAction(nameof(Index));
         }
 
         //GET: Quiz/QuizResults
