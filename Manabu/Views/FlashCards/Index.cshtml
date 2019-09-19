@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<body>
-    <h1>Index</h1>
+<body class="home-image">
+    <h1 class="text-shadow">Index</h1>
     <p>
-        <a asp-action="Create">Create New</a>
+        <a class="text-dark text-shadow" asp-action="Create">Create New</a>
     </p>
     <div class="d-flex flex-wrap justify-content-around">
         @foreach (var item in Model)

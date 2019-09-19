@@ -61,15 +61,15 @@ body {
 }
 
 .home-image {
-    background-image: url('../images/golden-pavilion-in-kyoto-japan.jpg');
-    background-size: 107em;
+    background-image: url('../images/53281.jpg');
+    background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .footer-color {
-    background-color: black;
-    opacity: 0.7;
+    background-color: #194C4A;
+    opacity:0.9;
 }
 
 .home-text-shadow {
@@ -81,8 +81,8 @@ body {
 }
 
 .nav-bg-color {
-    background-color: black;
-    opacity: 0.8;
+    background-color: #194C4A;
+    opacity: 0.9;
 }
 
 .flip-card {
@@ -120,7 +120,7 @@ body {
 }
 
 .flip-card-back {
-    background-color: #2980b9;
+    background-color: #194C4A;
     color: white;
     transform: rotateY(180deg);
 }
@@ -128,3 +128,7 @@ body {
 .question-padding {
     padding-left: 55px;
 }
+.text-shadow {
+    text-shadow: 2px 2px 3px #84A389;
+}
+
