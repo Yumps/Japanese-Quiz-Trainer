@@ -6,33 +6,26 @@
 }
 
 @*<h1>TakeQuiz</h1>*@
-
     <div>
         <form asp-action="SaveAnswers">
 
             @for (var i = 0; i < Model.ToList().Count(); i++)
             {
                 <div>
-                    <h1>Question @Html.DisplayFor(modelItem => modelItem.ToList()[i].Id)</h1>
-                    <p id="question" class="display-4">@Html.DisplayFor(modelItem => modelItem.ToList()[i].Name)</p>
-
-                    <button onclick="responsiveVoice.speak('@Html.ValueFor(modelItem => modelItem.ToList()[i].Name)', 'Japanese Male', { Volume: 0.5 }, { Rate: 0.25 })" type="button" value="Play">
-                    <i class="fa fa-microphone"></i>
-                    </button>
-
+                    <h1>Question @{var j = i + 1;} @j</h1>
+                        <div>
+                        <p id="question" class="display-4">@Html.DisplayFor(modelItem => modelItem.ToList()[i].Name) <i class="fa fa-microphone" onclick="responsiveVoice.speak('@Html.ValueFor(modelItem => modelItem.ToList()[i].Name)', 'Japanese Male', { Volume: 0.5 }, { Rate: 0.25 })" type="button" value="Play"></i></p>
+                        </div>
                     @Html.TextBoxFor(modelItem => modelItem.ToList()[i].Id, new { style = "display: none;" })
                 </div>
 
                 @foreach (var answer in Model.ToList()[i].AnswerKeys)
                 {
         <div>
-            @*<input type="radio" id="radio" name="@Html.DisplayNameFor(modelItem =>answer.Name)" value="@Html.DisplayFor(modelItem =>answer.Name)" />
-        <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>*@
             @Html.RadioButtonFor(modelItem => modelItem.ToList()[i].CorrectAnswer, answer.Id)
             <label for="radio">@Html.DisplayFor(modelItem => answer.Name)</label>
         </div>
                 }
-
 
             }
 

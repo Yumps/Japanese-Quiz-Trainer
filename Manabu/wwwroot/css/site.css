@@ -54,3 +54,33 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.fa.fa-microphone {
+    -webkit-appearance: none !important;
+    font-size: 1.25rem;
+}
+
+.home-image {
+    background-image: url('../images/golden-pavilion-in-kyoto-japan.jpg');
+    background-size: 107em;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-color {
+    background-color: black;
+    opacity: 0.7;
+}
+
+.home-text-shadow {
+    text-shadow: -2px -2px 3px black;
+}
+
+.home-text-color {
+    color: white;
+}
+
+.nav-bg-color {
+    background-color: black;
+    opacity: 0.8;
+}
